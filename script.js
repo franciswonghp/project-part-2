@@ -45,9 +45,31 @@ document.addEventListener('DOMContentLoaded', function() {
         //both delete and edit button working
         //li.querySelector(".delete-btn").addEventListener('click', function() {
         //alert("deleteing todo :" + todo.name)})
-      }
-    }
+
+        // Edit button 
+        li.querySelector(".edit-btn").addEventListener('click', function() {
+        const newName = prompt("Enter the new customer name: ", todo.name);
+        const newNumber = prompt("Enter the customer new number ", todo.number);
+        const newUrgency = prompt("Enter the new urgency:", todo.urgency);
+        modifyTask(todos, todo.id, newName, newNumber, newUrgency);
+        renderTodos(todos);
+        })
+        // delete button
+        li.querySelector(".delete-btn").addEventListener('click', function() {
+        const confirmation = confirm("Do you want to delete from the list: " + todo.name + "?");
+        if (confirmation) {
+        deleteTask(todos, todo.id);
+        renderTodos(todos); }})
+
+      }}
+
+      
+    
   
-    main();
-  });
+    
+        
+        
+main();
+  
+});
 
