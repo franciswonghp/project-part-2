@@ -1,3 +1,7 @@
+// at the top of `data.js`
+const BASE_JSON_BIN_URL = "https://api.jsonbin.io/v3/b";
+const BIN_ID = "652e334254105e766fc35326";
+
 let todos = [];
 
 function addTodo(todos, name, number, urgency) {
@@ -40,4 +44,14 @@ function deleteTask(todos, id) {
   } else {
     console.log("Task is not found");
   }
+}
+
+// ...add at the end of `data.js`
+//load task to use wait 
+//The line const response =await axios.get.... is to fetch the JSON data from the JSON Bin RESTFul API
+//We then return the data fetched from JSON Bin
+async function loadTasks() {
+  const response = await axios.get(BASE_JSON_BIN_URL + "/" + BIN_ID + "/latest");
+  console.log(response.data)
+  return response.data.record;
 }
